@@ -1,4 +1,5 @@
 import delay from 'delay'
+import { CID } from 'multiformats/cid'
 import { assert, suite } from 'playwright-test/taps'
 import { Delegation } from '../src/delegation.js'
 import { Invocation } from '../src/invocation.js'
@@ -420,4 +421,28 @@ inv('should create proofs in correct order from store', async () => {
   assert.equal(inv.delegations.length, 2)
   assert.equal(inv.delegations[0].cid.toString(), dlg1.cid.toString())
   assert.equal(inv.delegations[1].cid.toString(), dlg2.cid.toString())
+})
+
+inv('should accept a CID as an args value', async () => {
+  const delegation = await Delegation.create({
+    iss: mocks.bob,
+    aud: mocks.alice.did,
+    sub: mocks.bob.did,
+    pol: [],
+    cmd: '/account/create',
+  })
+
+  const invocation = await Invocation.create({
+    iss: mocks.bob,
+    sub: mocks.bob.did,
+    cmd: '/ucan/revoke',
+    args: { revoke: delegation.cid },
+    prf: [],
+    nonce: new Uint8Array(),
+    exp: null,
+    verifierResolver: mocks.verifierResolver,
+  })
+
+  assert.ok(invocation.bytes instanceof Uint8Array)
+  assert.ok(CID.asCID(invocation.payload.args.revoke))
 })

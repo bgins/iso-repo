@@ -314,9 +314,9 @@ export const cborValue =
       z.number(),
       z.boolean(),
       z.null(),
-      z.boolean(),
       z.bigint(),
       z.instanceof(Uint8Array),
+      z.instanceof(CID),
       z.array(cborValue),
       z.record(z.string(), cborValue),
     ])

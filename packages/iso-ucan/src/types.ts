@@ -31,12 +31,13 @@ export type CborPrimitive =
   | bigint
   | Uint8Array
   | ArrayBuffer
+export type CborLink = CID
 export type CborArray = CborValue[] | readonly CborValue[]
 export type CborObject =
   | { [Key in string]: CborValue }
   | { [Key in string]?: CborValue | undefined }
 
-export type CborValue = CborPrimitive | CborArray | CborObject
+export type CborValue = CborPrimitive | CborLink | CborArray | CborObject
 
 /**
  * Delegation
