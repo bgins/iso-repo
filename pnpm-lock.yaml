@@ -476,17 +476,17 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       iso-base:
-        specifier: workspace:^
-        version: link:../iso-base
+        specifier: ^4.3.1
+        version: 4.3.1
       iso-did:
-        specifier: workspace:^
-        version: link:../iso-did
+        specifier: ^2.1.1
+        version: 2.1.1
       iso-kv:
         specifier: ^3.1.1
         version: 3.1.1
       iso-signatures:
-        specifier: workspace:^
-        version: link:../iso-signatures
+        specifier: ^0.5.1
+        version: 0.5.1(typescript@5.9.3)(zod@4.3.6)
       iso-web:
         specifier: ^2.1.0
         version: 2.2.0
@@ -3393,11 +3393,17 @@ packages:
   iso-base@4.3.1:
     resolution: {integrity: sha512-RjOi3z2fF6tHy63OSsJNuEQCGsSlUi66CQ9RBXlh6bUMyhovErADtoWJ4S6gMJ02wrtVTUaYvvygT0bVESwXJw==}
 
+  iso-did@2.1.1:
+    resolution: {integrity: sha512-osHaZWcBY2aSi1InDmjI99O5IAn5BfFXQ3+vI4wNBucPtH+31cxHvDczRp9T+rcoegBAgWcavlMuRgbnJEERzg==}
+
   iso-filecoin@7.4.7:
     resolution: {integrity: sha512-whLO1m0OskzOFGc+CB8WPr2gsR/asj/8MA7pQXYOtB9mPGay4askXLTJfIBY1AJh4/RaBUeIeGDMX6lpaj5TtA==}
 
   iso-kv@3.1.1:
     resolution: {integrity: sha512-yKTLmUCc8gl0MXJs3ZaTaNDgfG/2ROasZERKPa5aYY7Ks/eb8BvGfLHrC+t1cHxiRkogvaXulDP77ovwLKgLPg==}
+
+  iso-signatures@0.5.1:
+    resolution: {integrity: sha512-37a9p7sf7L67mGWYYIDU6ixKIfyfNHeKIVj3s8M2mKFGOfIbNQkK/pcoV8o3IZsvJ5e+y97tH32xNgibXo8mKw==}
 
   iso-web@1.4.3:
     resolution: {integrity: sha512-8XWpz+9WqAk1obMwajwv0waMBy7uCFFGDwW2SGI3fbFO/wt+FRxf2o6DvHoadPuV+wquvz+BAq3sX+oOW+fckQ==}
@@ -3992,6 +3998,14 @@ packages:
 
   ox@0.14.20:
     resolution: {integrity: sha512-rby38C3nDn8eQkf29Zgw4hkCZJ64Qqi0zRPWL8ENUQ7JVuoITqrVtwWQgM/He19SCMUEc7hS/Sjw0jIOSLJhOw==}
+    peerDependencies:
+      typescript: '>=5.4.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  ox@0.9.17:
+    resolution: {integrity: sha512-rKAnhzhRU3Xh3hiko+i1ZxywZ55eWQzeS/Q4HRKLx2PqfHOolisZHErSsJVipGlmQKHW5qwOED/GighEw9dbLg==}
     peerDependencies:
       typescript: '>=5.4.0'
     peerDependenciesMeta:
@@ -8033,6 +8047,14 @@ snapshots:
     dependencies:
       bigint-mod-arith: 3.3.1
 
+  iso-did@2.1.1:
+    dependencies:
+      did-resolver: 4.1.0
+      iso-base: 4.3.1
+      iso-web: 1.4.3
+      multiformats: 13.4.2
+      p-race: 3.1.0
+
   iso-filecoin@7.4.7(typescript@5.9.3):
     dependencies:
       '@ipld/dag-cbor': 9.2.6
@@ -8055,6 +8077,18 @@ snapshots:
       conf: 15.1.0
       idb-keyval: 6.2.2
       kysely: 0.28.16
+
+  iso-signatures@0.5.1(typescript@5.9.3)(zod@4.3.6):
+    dependencies:
+      '@noble/ed25519': 3.1.0
+      '@noble/hashes': 2.2.0
+      '@noble/secp256k1': 3.1.0
+      iso-base: 4.3.1
+      iso-did: 2.1.1
+      ox: 0.9.17(typescript@5.9.3)(zod@4.3.6)
+    transitivePeerDependencies:
+      - typescript
+      - zod
 
   iso-web@1.4.3:
     dependencies:
@@ -8938,6 +8972,21 @@ snapshots:
   outvariant@1.4.3: {}
 
   ox@0.14.20(typescript@5.9.3)(zod@4.3.6):
+    dependencies:
+      '@adraffy/ens-normalize': 1.11.1
+      '@noble/ciphers': 1.3.0
+      '@noble/curves': 1.9.1
+      '@noble/hashes': 1.8.0
+      '@scure/bip32': 1.7.0
+      '@scure/bip39': 1.6.0
+      abitype: 1.2.4(typescript@5.9.3)(zod@4.3.6)
+      eventemitter3: 5.0.1
+    optionalDependencies:
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - zod
+
+  ox@0.9.17(typescript@5.9.3)(zod@4.3.6):
     dependencies:
       '@adraffy/ens-normalize': 1.11.1
       '@noble/ciphers': 1.3.0
